@@ -14,7 +14,6 @@ df.drop(index)
 
 # 去重操作
 df.drop_duplicates()
-
 print(len(df))
 print(df["sku"].nunique())
 print(df[["sku", "fc"]].nunique())
@@ -43,3 +42,24 @@ for i in df.index:
 
 df["level"] = pd.Series(level_list)
 print(df[df["level"] == "super"].tail())
+
+df['score'] = df['roq'].map(lambda x: "good" if x > 100 else "bad")
+print(df['score'])
+
+# 按行索引数据
+print(df.loc[0])
+print(df.loc[[1, 3, 8]])
+
+# 按列索引数据
+print(df['roq'])
+print(type(df['roq']))
+
+# 按照行和列同时索引数据
+print(df.loc[[1, 3, 4], ["sku", "roq"]])
+print(type(df.loc[[1, 3, 4], ["sku", "roq"]]))
+
+# 按条件进行筛选
+print(df[(df['roq'] > 100) & (df['unit'].isin(['Pet']))][['sku', 'roq', 'unit']])
+pet = df[(df['roq'] > 100) & (df['unit'].isin(['Pet']))][['sku', 'roq', 'unit']]
+pet.to_csv('./pet.csv')
+

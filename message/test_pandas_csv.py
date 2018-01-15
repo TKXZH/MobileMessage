@@ -61,5 +61,19 @@ print(type(df.loc[[1, 3, 4], ["sku", "roq"]]))
 # 按条件进行筛选
 print(df[(df['roq'] > 100) & (df['unit'].isin(['Pet']))][['sku', 'roq', 'unit']])
 pet = df[(df['roq'] > 100) & (df['unit'].isin(['Pet']))][['sku', 'roq', 'unit']]
-pet.to_csv('./pet.csv')
+pet2 = df[df.unit == 'Pet']
+print(pet2.head())
+# 生成csv文件
+# pet.to_csv(path_or_buf='./pet.csv', index=False)
 
+# 查看各个列的数据类型
+print(df.dtypes)
+
+# 查看索引
+print(df.index)
+
+# 查看列名
+print(df.columns)
+
+# 产看行数和列数
+print(df.shape)
